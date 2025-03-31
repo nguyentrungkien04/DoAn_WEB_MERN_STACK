@@ -1,0 +1,51 @@
+.sidebar {
+    width: 18%;
+    min-height: 100vh;
+    border: 1.5px solid #a9a9a9;
+    border-top: 0;
+    font-size: max(1vw,10px);
+}
+
+.sidebar-options {
+    padding-top: 50px;
+    padding-left: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #a9a9a9;
+    border-right: 0;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 20px 0px 0px 20px;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.sidebar-option.active {
+    background-color: tomato;
+    border-color: tomato;
+    color: white;
+}
+
+/* Thêm hiệu ứng chuyển đổi màu cho ảnh khi active */
+.sidebar-option img {
+    transition: filter 0.3s ease-in-out;
+}
+
+.sidebar-option.active img {
+    filter: brightness(0) invert(1); /* Chỉ đổi màu, không thay đổi kích thước */
+}
+
+
+
+@media (max-width: 900px) {
+   .sidebar-option p{
+        display: none;
+   } 
+}
+

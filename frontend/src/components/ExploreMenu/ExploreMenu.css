@@ -1,3 +1,4 @@
+
 .explore-menu {
     display: flex;
     flex-direction: column;
@@ -7,6 +8,11 @@
 .explore-menu h1 {
     color: #262626;
     font-weight: 500;
+    font-family: 'Arial', 'Tahoma', 'Verdana', sans-serif;
+}
+
+.explore-menu p {
+    font-family: 'Arial', 'Tahoma', 'Verdana', sans-serif;
 }
 
 .explore-menu-text {
@@ -40,6 +46,7 @@
     color: #747474;
     font-size: max(1.4vw, 16px);
     cursor: pointer;
+    font-family: 'Arial', 'Tahoma', 'Verdana', sans-serif;
 }
 
 .explore-menu hr {
