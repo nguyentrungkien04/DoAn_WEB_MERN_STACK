@@ -26,6 +26,10 @@
     flex-grow: 1;
 }
 
+.food-item-info .food-item-desc {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .food-item-name-rating {
     margin-bottom: 10px;
 }

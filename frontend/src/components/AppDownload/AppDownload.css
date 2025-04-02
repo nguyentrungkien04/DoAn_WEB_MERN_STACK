@@ -21,3 +21,6 @@
 .app-download-platforms img:hover {
     transform: scale(1.1);
 }
+.app-download p {
+    font-family: Arial, Helvetica, sans-serif;
+}

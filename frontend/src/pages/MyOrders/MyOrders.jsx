@@ -58,7 +58,7 @@ const MyOrders = () => {
                             <p>{order.amount} VND</p>
                             <p>Số lượng món: {order.items.length}</p>
                             <p><span>&#x25cf;</span> <b>{order.status}</b></p>
-                            <button onClick={fetchOrders}>Track Order </button>
+                            <button onClick={fetchOrders}>Cập nhật trạng thái</button>
                         </div>
                     )
                 })}

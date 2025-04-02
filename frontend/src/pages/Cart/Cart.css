@@ -8,6 +8,11 @@
     align-items: center;
     color: grey;
     font-size: max(1vw,12px);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cart-items-title p {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .cart-items-item {
@@ -17,6 +22,11 @@
 
 .cart-items-item img {
     width: 50px;
+}
+
+.cart-items-item .delete_icon {
+    cursor: pointer;
+    width: 30px;
 }
 
 .cart hr {
@@ -33,6 +43,10 @@
     justify-content: space-between;
     margin-top: 80px;
     gap: max(12vw,20px);
+}
+
+.cart-bottom .cart-total p {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .cart-total {
@@ -70,6 +84,10 @@
 
 .cart-promocode p {
     color: #555;
+}
+
+.cart-promocode-title p {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .cart-promocode-input {

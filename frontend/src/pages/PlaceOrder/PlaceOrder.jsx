@@ -28,6 +28,15 @@ const PlaceOrder = () => {
     setData((data) => ({ ...data, [name]: value }));
   };
 
+  // ✅ Hàm định dạng tiền tệ: VND 50.000
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('vi-VN', {
+      style: 'currency',
+      currency: 'VND',
+      currencyDisplay: 'code'
+    }).format(amount);
+  };
+
   const placeOrder = async (event) => {
     event.preventDefault();
     let orderItems = [];
@@ -39,14 +48,17 @@ const PlaceOrder = () => {
         orderItems.push(itemInfo);
       }
     });
+
     let orderData = {
       address: data,
       items: orderItems,
       amount: getTotalCartAmount() + 20000,
     };
+
     let response = await axios.post(url + "/api/order/place", orderData, {
       headers: { token },
     });
+
     if (response.data.success) {
       const { session_url } = response.data;
       window.location.replace(session_url);
@@ -145,22 +157,22 @@ const PlaceOrder = () => {
           <div>
             <div className="cart-total-details">
               <p>Tạm tính</p>
-              <p>{getTotalCartAmount().toLocaleString()} ₫</p>
+              <p>{formatCurrency(getTotalCartAmount())}</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Phí giao hàng</p>
-              <p>{getTotalCartAmount() === 0 ? 0 : 20000} ₫</p>
+              <p>{formatCurrency(getTotalCartAmount() === 0 ? 0 : 20000)}</p>
             </div>
             <hr />
             <div className="cart-total-details-bottom">
               <p className="ptag">Tổng cộng</p>
               <p>
-                {(getTotalCartAmount() === 0
-                  ? 0
-                  : getTotalCartAmount() + 20000
-                ).toLocaleString()}{" "}
-                ₫
+                {formatCurrency(
+                  getTotalCartAmount() === 0
+                    ? 0
+                    : getTotalCartAmount() + 20000
+                )}
               </p>
             </div>
           </div>

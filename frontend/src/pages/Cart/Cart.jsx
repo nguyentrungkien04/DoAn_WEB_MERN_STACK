@@ -3,22 +3,31 @@ import "./Cart.css";
 import { useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import { useNavigate } from "react-router-dom";
+import { assets } from "../../assets/assets"; 
 
 const Cart = () => {
   const { cartItem, food_list, removeFromCart, getTotalCartAmount, url } = useContext(StoreContext);
+  const navigate = useNavigate();
 
-  const navigate =useNavigate();
+  // ✅ Thêm hàm định dạng tiền tệ Việt Nam
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('vi-VN', {
+      style: 'currency',
+      currency: 'VND',
+      currencyDisplay: 'code'  // Hiển thị "VND" thay vì "₫"
+    }).format(amount);
+  };
 
   return (
     <div className="cart">
       <div className="cart-items">
         <div className="cart-items-title">
-          <p>Items</p>
-          <p>Title</p>
-          <p>Price</p>
-          <p>Quantity</p>
-          <p>Total</p>
-          <p>Remove</p>
+          <p>Mục</p>
+          <p>Tên món</p>
+          <p>Giá</p>
+          <p>Số lượng</p>
+          <p>Tổng</p>
+          <p>Xóa</p>
         </div>
         <br />
         <hr />
@@ -27,12 +36,12 @@ const Cart = () => {
             return (
               <div key={item.id}>
                 <div className="cart-items-title cart-items-item">
-                  <img src={url+"/images/"+item.image} alt="" />
+                  <img src={url + "/images/" + item.image} alt="" />
                   <p>{item.name}</p>
-                  <p>${item.price}</p>
+                  <p>{formatCurrency(item.price)}</p>
                   <p>{cartItem[item.id]}</p>
-                  <p>${item.price * cartItem[item.id]}</p>
-                  <p onClick={()=>removeFromCart(item.id)} className="cross">x</p>
+                  <p>{formatCurrency(item.price * cartItem[item.id])}</p>
+                  <p onClick={() => removeFromCart(item.id)} className="cross"><img className="delete_icon" src={assets.delete_icon} alt="dddd"/></p>
                 </div>
                 <hr />
               </div>
@@ -45,28 +54,28 @@ const Cart = () => {
           <h2>Cart Totals</h2>
           <div>
             <div className="cart-total-details">
-              <p>Subtotal</p>
-              <p>${getTotalCartAmount()}</p>
+              <p>Tạm tính</p>
+              <p>{formatCurrency(getTotalCartAmount())}</p>
             </div>
-            <hr/>
+            <hr />
             <div className="cart-total-details">
-              <p>Delivery Fee</p>
-              <p>${getTotalCartAmount()===0?0:2}</p>
+              <p>Phí vận chuyển</p>
+              <p>{formatCurrency(getTotalCartAmount() === 0 ? 0 : 20000)}</p>
             </div>
-            <hr/>
+            <hr />
             <div className="cart-total-details-bottom">
-              <p className="ptag">Total</p>
-              <p>${getTotalCartAmount()===0?0:getTotalCartAmount()+2}</p>
+              <p className="ptag">Tổng</p>
+              <p>{formatCurrency(getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 20000)}</p>
             </div>
           </div>
-          <button onClick={()=>navigate("/order")}>Proceed to Checkout</button>
+          <button onClick={() => navigate("/order")}>Tiến hành thanh toán</button>
         </div>
         <div className="cart-promocode">
-          <div>
-            <p>If you have a promo code, Enter it here</p>
+          <div className="cart-promocode-title">
+            <p>Nếu bạn có mã khuyến mại, hãy nhập vào đây</p>
             <div className="cart-promocode-input">
               <input type="text" placeholder="Enter your code" />
-              <button>Apply</button>
+              <button>Áp dụng</button>
             </div>
           </div>
         </div>
